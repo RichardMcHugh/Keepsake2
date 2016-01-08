@@ -4,6 +4,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 
+
 class ViewController: UIViewController {
     
     @IBAction func goToSecond() {
@@ -44,6 +45,13 @@ class ViewController: UIViewController {
         let boscombePierRegion = CLCircularRegion(center: boscombePier, radius: 100, identifier: "Boscombe Pier")
         locationManager.startMonitoringForRegion(boscombePierRegion)
         
+        let bournemouthGardens = CLLocationCoordinate2D(latitude: 50.719799, longitude: 1.879439)
+        let bournemouthGardensRegion = CLCircularRegion(center: bournemouthGardens, radius: 100, identifier: "Bournemouth Gardens")
+        locationManager.startMonitoringForRegion(bournemouthGardensRegion)
+        
+        let myCell = MapPin()
+        myCell.subtitle = "MapPin"
+
         
         
     }

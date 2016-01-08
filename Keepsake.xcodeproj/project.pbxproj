@@ -10,6 +10,7 @@
 		0DE07BC7562E7E1359807918 /* Pods_Keepsake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC54A9749EE5833F815AC40 /* Pods_Keepsake.framework */; };
 		D81A4BAA1C3A997E008A4E56 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81A4BA91C3A997E008A4E56 /* MapKit.framework */; };
 		D81EEF171C3EB1AF0027F588 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81EEF161C3EB1AF0027F588 /* Images.xcassets */; };
+		D82F0E801C4041AD00D8CEE5 /* MapPin.m in Sources */ = {isa = PBXBuildFile; fileRef = D82F0E7F1C4041AD00D8CEE5 /* MapPin.m */; };
 		D88585631C15B289007E4F14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88585621C15B289007E4F14 /* AppDelegate.swift */; };
 		D88585651C15B289007E4F14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88585641C15B289007E4F14 /* ViewController.swift */; };
 		D88585681C15B289007E4F14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88585661C15B289007E4F14 /* Main.storyboard */; };
@@ -24,6 +25,9 @@
 		D81A4BA91C3A997E008A4E56 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D81A4BAB1C3A9A1E008A4E56 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		D81EEF161C3EB1AF0027F588 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D82F0E7D1C4041AD00D8CEE5 /* Keepsake-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keepsake-Bridging-Header.h"; sourceTree = "<group>"; };
+		D82F0E7E1C4041AD00D8CEE5 /* MapPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPin.h; sourceTree = "<group>"; };
+		D82F0E7F1C4041AD00D8CEE5 /* MapPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPin.m; sourceTree = "<group>"; };
 		D885855F1C15B289007E4F14 /* Keepsake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keepsake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88585621C15B289007E4F14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D88585641C15B289007E4F14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,12 +91,15 @@
 			children = (
 				D88585621C15B289007E4F14 /* AppDelegate.swift */,
 				D88585641C15B289007E4F14 /* ViewController.swift */,
+				D82F0E7E1C4041AD00D8CEE5 /* MapPin.h */,
+				D82F0E7F1C4041AD00D8CEE5 /* MapPin.m */,
 				D81A4BAB1C3A9A1E008A4E56 /* Location.gpx */,
 				D88585661C15B289007E4F14 /* Main.storyboard */,
 				D8CED5EE1C3D831C00BB6418 /* SecondViewController.swift */,
 				D88585691C15B289007E4F14 /* Assets.xcassets */,
 				D885856E1C15B289007E4F14 /* Info.plist */,
 				D81EEF161C3EB1AF0027F588 /* Images.xcassets */,
+				D82F0E7D1C4041AD00D8CEE5 /* Keepsake-Bridging-Header.h */,
 			);
 			path = Keepsake;
 			sourceTree = "<group>";
@@ -126,7 +133,7 @@
 		D88585571C15B289007E4F14 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Richard McHugh";
 				TargetAttributes = {
@@ -219,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82F0E801C4041AD00D8CEE5 /* MapPin.m in Sources */,
 				D8CED5EF1C3D831C00BB6418 /* SecondViewController.swift in Sources */,
 				D88585651C15B289007E4F14 /* ViewController.swift in Sources */,
 				D88585631C15B289007E4F14 /* AppDelegate.swift in Sources */,
@@ -327,10 +335,13 @@
 			baseConfigurationReference = 05D3D00561E4A72BECC89798 /* Pods-Keepsake.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Keepsake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.view.Keepsake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keepsake/Keepsake-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -340,10 +351,12 @@
 			baseConfigurationReference = 38CEB3CAE797296A192382DA /* Pods-Keepsake.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Keepsake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.view.Keepsake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keepsake/Keepsake-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
