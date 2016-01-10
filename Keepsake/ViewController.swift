@@ -89,9 +89,7 @@ class ViewController: UIViewController {
         let bournemouthGardens = CLLocationCoordinate2D(latitude: 50.719799, longitude: -1.879439)
         let bournemouthGardensRegion = CLCircularRegion(center: bournemouthGardens, radius: 100, identifier: "Bournemouth Gardens")
         locationManager.startMonitoringForRegion(bournemouthGardensRegion)
-        
-        let myCell = MapPin()
-        myCell.subtitle = "MapPin"
+
 
         
         
