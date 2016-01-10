@@ -31,6 +31,43 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapBournePier()
+    }
+   
+    func mapBournePier()
+    {
+        //coordinates
+        let bourneLat: CLLocationDegrees = 50.716098
+        let bourneLong: CLLocationDegrees = -1.875780
+        
+        let bourneCoordinate = CLLocationCoordinate2D(latitude: bourneLat, longitude: bourneLong)
+        
+        //Span
+        let latDelta: CLLocationDegrees = 0.01
+        let longDelta: CLLocationDegrees = 0.01
+        
+        let bourneSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
+        
+        let bourneRegion = MKCoordinateRegion(center: bourneCoordinate, span: bourneSpan)
+        
+        
+        
+        mapView.setRegion(bourneRegion, animated: true)
+        
+        
+        let bourneAnnotation = MKPointAnnotation()
+        bourneAnnotation.title = "Bournemouth Seafront"
+        bourneAnnotation.subtitle = "My last memories"
+        bourneAnnotation.coordinate = CLLocationCoordinate2DMake(50.716098, -1.875780)
+        
+        mapView.addAnnotation(bourneAnnotation)
+        
+        
+        
+        
+        
+        
+    
         
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
@@ -45,7 +82,7 @@ class ViewController: UIViewController {
         let boscombePierRegion = CLCircularRegion(center: boscombePier, radius: 100, identifier: "Boscombe Pier")
         locationManager.startMonitoringForRegion(boscombePierRegion)
         
-        let bournemouthGardens = CLLocationCoordinate2D(latitude: 50.719799, longitude: 1.879439)
+        let bournemouthGardens = CLLocationCoordinate2D(latitude: 50.719799, longitude: -1.879439)
         let bournemouthGardensRegion = CLCircularRegion(center: bournemouthGardens, radius: 100, identifier: "Bournemouth Gardens")
         locationManager.startMonitoringForRegion(bournemouthGardensRegion)
         
