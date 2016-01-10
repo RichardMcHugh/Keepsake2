@@ -60,10 +60,14 @@ class ViewController: UIViewController {
         bourneAnnotation.subtitle = "My last memories"
         bourneAnnotation.coordinate = CLLocationCoordinate2DMake(50.716098, -1.875780)
         
+        let boscAnnotation = MKPointAnnotation()
+        boscAnnotation.title = "Boscombe Pier"
+        boscAnnotation.subtitle = "Knew there was another Pier"
+        boscAnnotation.coordinate = CLLocationCoordinate2DMake(50.719914, -1.84355)
+        
         mapView.addAnnotation(bourneAnnotation)
         
-        
-        
+
         
         
         
