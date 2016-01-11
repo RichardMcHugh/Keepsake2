@@ -87,9 +87,9 @@
 			children = (
 				D88585621C15B289007E4F14 /* AppDelegate.swift */,
 				D88585641C15B289007E4F14 /* ViewController.swift */,
+				D8CED5EE1C3D831C00BB6418 /* SecondViewController.swift */,
 				D81A4BAB1C3A9A1E008A4E56 /* Location.gpx */,
 				D88585661C15B289007E4F14 /* Main.storyboard */,
-				D8CED5EE1C3D831C00BB6418 /* SecondViewController.swift */,
 				D88585691C15B289007E4F14 /* Assets.xcassets */,
 				D885856E1C15B289007E4F14 /* Info.plist */,
 				D81EEF161C3EB1AF0027F588 /* Images.xcassets */,

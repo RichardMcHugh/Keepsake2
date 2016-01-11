@@ -6,11 +6,19 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController {
+    @IBOutlet weak var downloadButton: UIButton!
+    var triggeredRegion: String!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapBournePier()
+        downloadButton.enabled = false
+    }
     
     @IBAction func goToSecond() {
         let alertController: UIAlertController = UIAlertController(title: "Geocache Data Found", message: "Download Geocache Data?", preferredStyle: .Alert)
     
-        let cancelAction = UIAlertAction(title: "Cancel?", style: .Cancel) { action-> Void in
+        let cancelAction = UIAlertAction(title: "Cancel ", style: .Cancel) { action-> Void in
             //
         }
         
@@ -22,27 +30,31 @@ class ViewController: UIViewController {
         alertController.addAction(nextAction)
         
         self.presentViewController(alertController, animated: true, completion: nil)
-        
     }
     
     let locationManager = CLLocationManager()
 
     @IBOutlet weak var mapView: MKMapView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        mapBournePier()
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toSecond" {
+            let vc = segue.destinationViewController as! SecondViewController
+            vc.name = triggeredRegion
+        }
+        
     }
+
    
-    func mapBournePier()
-    {
-        //coordinates
+    func mapBournePier() {
+//Coordinates
         let bourneLat: CLLocationDegrees = 50.716098
         let bourneLong: CLLocationDegrees = -1.875780
         
         let bourneCoordinate = CLLocationCoordinate2D(latitude: bourneLat, longitude: bourneLong)
         
-        //Span
+//Span
         let latDelta: CLLocationDegrees = 0.01
         let longDelta: CLLocationDegrees = 0.01
         
@@ -59,14 +71,21 @@ class ViewController: UIViewController {
         bourneAnnotation.title = "Bournemouth Seafront"
         bourneAnnotation.subtitle = "My last memories"
         bourneAnnotation.coordinate = CLLocationCoordinate2DMake(50.716098, -1.875780)
+        mapView.addAnnotation(bourneAnnotation)
         
         let boscAnnotation = MKPointAnnotation()
         boscAnnotation.title = "Boscombe Pier"
         boscAnnotation.subtitle = "Knew there was another Pier"
         boscAnnotation.coordinate = CLLocationCoordinate2DMake(50.719914, -1.84355)
+        mapView.addAnnotation(boscAnnotation)
         
-        mapView.addAnnotation(bourneAnnotation)
-        
+        let gardAnnotation = MKPointAnnotation()
+        gardAnnotation.title = "Bournemouth Gardens"
+        gardAnnotation.subtitle = "Caged Beauty"
+        gardAnnotation.coordinate = CLLocationCoordinate2DMake(50.719799, -1.879439)
+        mapView.addAnnotation(gardAnnotation)
+       
+//Map Pin Annotations
 
         
         
@@ -101,22 +120,13 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
-        Alamofire.request(.GET, "http://kylegoslan.co.uk/name.json").response { request, response, data, error in
-            
-            if let data = data {
-                
-                let json = JSON(data: data)
-                
-                for thing in json.arrayValue {
-                    if thing["userName"].stringValue == region.identifier {
-                        print("\(thing["text"].stringValue)")
-                    }
-                }
-                
-            }
-            
-        }
+        triggeredRegion = region.identifier
+        downloadButton.enabled = true
+    
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        downloadButton.enabled = false
     }
     
 }

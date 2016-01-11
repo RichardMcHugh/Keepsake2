@@ -7,27 +7,48 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
+import Alamofire
+import SwiftyJSON
 
 class SecondViewController: UIViewController {
+    
+    var name: String!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(name)
+        
+        Alamofire.request(.GET, "http://midlandgates.co.uk/JSON/Keepsake-inputs.json").response { request, response, data, error in
+        
+            if let data = data {
+        
+                let json = JSON(data: data)
+        
+                for thing in json.arrayValue {
+                    if thing["userName"].stringValue == self.name {
+                        print("\(thing["text"].stringValue)")
 
-    @IBAction func goToFirst() {
-        let alertController: UIAlertController = UIAlertController(title: "Save and quit", message: "Back to Map?", preferredStyle: .Alert)
+                        
+                        //textfield.text = thing["text"].stringValue
+                        //Loading JSON Files
         
-        let cancelAction = UIAlertAction(title: "Cancel?", style: .Cancel) { action-> Void in
-            //
+                    }
+                }
+                
+            }
+            
         }
         
-        let nextAction = UIAlertAction(title: "Download", style: .Default) { (action) -> Void in
-            self.performSegueWithIdentifier("toFirst", sender: self)
-        }
         
-        alertController.addAction(cancelAction)
-        alertController.addAction(nextAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func dismiss(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
-
-
-
 }
+
+
